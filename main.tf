@@ -149,7 +149,3 @@ terraform {
     encrypt        = true
   }
 }
-
-output "s3_bucket_arn" {
-  
-}

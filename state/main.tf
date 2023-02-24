@@ -5,9 +5,11 @@ provider "aws" {
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "terraform-up-and-running-state-finkali"
 
-  lifecycle {
-    prevent_destroy = true
-  }
+    # lifecycle {
+    #   prevent_destroy = true
+    # }
+
+  force_destroy = true
 
   versioning {
     enabled = true
@@ -23,12 +25,12 @@ resource "aws_s3_bucket" "terraform_state" {
 }
 
 resource "aws_dynamodb_table" "terraform-locks" {
-  name     = "terraform-up-and-running-locks"
+  name         = "terraform-up-and-running-locks"
   billing_mode = "PAY_PER_REQUEST"
-  hash_key = "LockID"
+  hash_key     = "LockID"
 
   attribute {
-    name    = "LockID"
+    name = "LockID"
     type = "S"
   }
 
